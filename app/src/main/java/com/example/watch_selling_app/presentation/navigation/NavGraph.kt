@@ -21,8 +21,7 @@ import com.example.watch_selling_app.data.dataSource.DataSource
 
 @Composable
 fun AppNavGraph(navController: NavHostController,
-                isDarkTheme: Boolean,
-                onToggleTheme: () -> Unit) {
+               ) {
     val navItems = BottomNavDataSource.getBottomNavItems()
     var selectedItem by remember { mutableStateOf(navItems.first()) }
 
@@ -149,7 +148,7 @@ fun AppNavGraph(navController: NavHostController,
                 onLogoutClick = {  navController.navigate("login") {
                     popUpTo("home") { inclusive = true }
                     launchSingleTop = true
-                }},onToggleTheme = onToggleTheme
+                }}
             )
         }
 
