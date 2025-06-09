@@ -82,6 +82,8 @@ object Dimens {
     val productCardHeight = 140.dp
     val productCardWidth = 160.dp
 
+    val productImage = 100.dp
+
     //brand sizes
     val brand_size = 64.dp
 
