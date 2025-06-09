@@ -110,7 +110,7 @@ fun ProductDetailScreen(
         // Product Title
         Text(
             text = stringResource(id = product.modelNameResId),
-            style = MaterialTheme.typography.titleMedium,
+            style = MaterialTheme.typography.titleLarge,
             color = MaterialTheme.colorScheme.onBackground
         )
 
