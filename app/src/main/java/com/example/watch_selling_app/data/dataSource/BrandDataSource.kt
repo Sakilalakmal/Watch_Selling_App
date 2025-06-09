@@ -22,7 +22,7 @@ object BrandDataSource {
         BrandData(
             nameResId = R.string.brand_tag_heuer,
             logoDescriptionResId = R.string.brand_tag_heuer_description,
-            logoResId = R.drawable.tag_heuer,
+            logoResId = R.drawable.,
             id = 3
         ),
         BrandData(
