@@ -24,6 +24,7 @@ object Dimens {
     val RadiusSmall = 8.dp
     val RadiusMedium = 12.dp
     val RadiusLarge = 16.dp
+    val RadiusExtra = 20.dp
 
     //borders
     val border_width = 1.dp
@@ -95,6 +96,9 @@ object Dimens {
 
     //profile image size
     val profile_image_size = 80.dp
+
+    // val theme icon size
+    val themIcon = 20.dp
 
 
 

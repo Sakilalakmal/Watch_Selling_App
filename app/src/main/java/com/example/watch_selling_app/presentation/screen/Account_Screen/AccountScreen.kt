@@ -82,7 +82,7 @@ fun AccountScreen(
                 verticalArrangement = Arrangement.spacedBy(Dimens.SpacingM)
             ) {
 
-                // 🔙 Top Bar
+                //  Top Bar
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -146,22 +146,22 @@ fun AccountScreen(
                         }
                     }
 
-                    // 🌗 Toggle Theme Button
+                    // Toggle Theme Button
                     Button(
                         onClick = onToggleTheme,
-                        shape = RoundedCornerShape(20.dp),
+                        shape = RoundedCornerShape(Dimens.RadiusExtra),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = MaterialTheme.colorScheme.surfaceVariant,
                             contentColor = MaterialTheme.colorScheme.onSurface
                         ),
-                        modifier = Modifier.height(40.dp)
+                        modifier = Modifier.height(Dimens.iconButtonSize)
                     ) {
                         Icon(
                             imageVector = if (isDark) Icons.Filled.LightMode else Icons.Filled.DarkMode,
                             contentDescription = "Toggle Theme",
-                            modifier = Modifier.size(20.dp)
+                            modifier = Modifier.size(Dimens.themIcon)
                         )
-                        Spacer(modifier = Modifier.width(8.dp))
+                        Spacer(modifier = Modifier.width(Dimens.SpacingXS))
                         Text(text = if (isDark) "Light" else "Dark")
                     }
                 }
@@ -181,7 +181,7 @@ fun AccountScreen(
                     }
                 )
 
-                // 🧩 General Section
+
                 Text(
                     text = getSafeString(
                         name = context.resources.getResourceEntryName(content.generalSectionTitleResId)
