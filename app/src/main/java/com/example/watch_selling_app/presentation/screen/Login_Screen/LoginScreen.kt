@@ -204,8 +204,8 @@ fun LoginScreenContent(
             .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically) {
             AnimatedImageButton(
-                imageResLight = content.googleButtonLightResId,
-                imageResDark = content.googleButtonDarkResId,
+                imageResLight = content.googleButtonDarkResId,
+                imageResDark = content.googleButtonLightResId,
                 contentDescription = content.googleButtonDescriptionKey,
                 modifier = Modifier
                     .height(Dimens.buttonsHeight)
@@ -214,8 +214,8 @@ fun LoginScreenContent(
             )
             
             AnimatedImageButton(
-                imageResLight = content.emailButtonLightResId,
-                imageResDark = content.emailButtonDarkResId,
+                imageResLight = content.emailButtonDarkResId,
+                imageResDark = content.emailButtonLightResId,
                 contentDescription = content.emailButtonDescriptionKey,
                 modifier = Modifier
                     .height(Dimens.buttonsHeight)
