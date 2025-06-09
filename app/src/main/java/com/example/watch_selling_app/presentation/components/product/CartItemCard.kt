@@ -57,19 +57,22 @@ fun CartItemCard(
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = stringResource(id = cartItem.product.brandNameResId),
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.primary
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
+                Spacer(modifier = Modifier.height(Dimens.SpacingXXS))
                 Text(
                     text = stringResource(id = cartItem.product.modelNameResId),
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.titleMedium,
                     maxLines = 1
                 )
+                Spacer(modifier = Modifier.height(Dimens.SpacingXXS))
                 Text(
                     text = "$ ${cartItem.product.price * cartItem.quantity}",
-                    style = MaterialTheme.typography.bodySmall,
+                    style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.primary
                 )
+                Spacer(modifier = Modifier.height(Dimens.SpacingXXS))
 
                 QuantitySelector(
                     quantity = cartItem.quantity,
