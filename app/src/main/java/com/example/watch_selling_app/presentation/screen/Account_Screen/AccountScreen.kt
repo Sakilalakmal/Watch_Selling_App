@@ -37,7 +37,7 @@ fun AccountScreen(
     onItemSelected: (BottomNavItem) -> Unit,
     onBackClick: () -> Unit,
     onLogoutClick: () -> Unit,
-    onToggleTheme: () -> Unit
+
 ) {
     val isDark = isSystemInDarkTheme()
     val context = LocalContext.current
@@ -146,24 +146,7 @@ fun AccountScreen(
                         }
                     }
 
-                    // Toggle Theme Button
-                    Button(
-                        onClick = onToggleTheme,
-                        shape = RoundedCornerShape(Dimens.RadiusExtra),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                            contentColor = MaterialTheme.colorScheme.onSurface
-                        ),
-                        modifier = Modifier.height(Dimens.iconButtonSize)
-                    ) {
-                        Icon(
-                            imageVector = if (isDark) Icons.Filled.LightMode else Icons.Filled.DarkMode,
-                            contentDescription = "Toggle Theme",
-                            modifier = Modifier.size(Dimens.themIcon)
-                        )
-                        Spacer(modifier = Modifier.width(Dimens.SpacingXS))
-                        Text(text = if (isDark) "Light" else "Dark")
-                    }
+
                 }
 
                 // View Full Profile Button
