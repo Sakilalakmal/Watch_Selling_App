@@ -3,6 +3,7 @@ package com.example.watch_selling_app.presentation.components.product
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -51,13 +52,17 @@ fun ProductCard(
 ) {
     var isFavorited by remember { mutableStateOf(false) }
 
+    val isDark = isSystemInDarkTheme()
+
     Card(
         modifier = modifier
             .width(Dimens.productCardWidth)
             .clickable(onClick = onClick),
         shape = RoundedCornerShape(Dimens.RadiusMedium),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.background
+            containerColor = if (isDark) MaterialTheme.colorScheme.surfaceContainer else {
+                MaterialTheme.colorScheme.background
+            }
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = Dimens.ElevationMedium)
     ) {
@@ -68,6 +73,7 @@ fun ProductCard(
                     painter = painterResource(id = product.imageResId),
                     contentDescription = stringResource(id = product.modelNameResId),
                     modifier = Modifier
+                        .padding(top = Dimens.SpacingS)
                         .fillMaxSize()
                         .clip(RoundedCornerShape(Dimens.RadiusMedium))
                 )
@@ -101,7 +107,7 @@ fun ProductCard(
                 )
 
                 Text(
-                    text = "$${"%,.2f".format(product.price.toFloat())}",
+                    text = "$ ${"%,.2f".format(product.price.toFloat())}",
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.SemiBold,
                     color = LocalCustomColors.current.luxuryGold,
