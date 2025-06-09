@@ -187,14 +187,14 @@ fun RegisterScreenContent(
             verticalAlignment = Alignment.CenterVertically)
         {
             Text(text = getSafeString(content.alreadyHaveAccountKey),
-                style = MaterialTheme.typography.labelMedium,
+                style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.onBackground
             )
 
             Spacer(modifier = Modifier.width(Dimens.SpacingXXS))
 
             Text(text = getSafeString(content.loginHereKey),
-                style = MaterialTheme.typography.titleSmall,
+                style = MaterialTheme.typography.titleLarge,
                 color = LocalCustomColors.current.luxuryGold,
                 modifier = Modifier
                     .clickable{onLoginHereClick()}
