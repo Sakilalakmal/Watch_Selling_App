@@ -75,7 +75,7 @@ fun FavoriteProductCard(
 
             Text(
                 text = getSafeString(product.modelNameResId.toString()),
-                style = MaterialTheme.typography.labelLarge,
+                style = MaterialTheme.typography.titleMedium,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
@@ -83,7 +83,7 @@ fun FavoriteProductCard(
 
             Text(
                 text = "$ ${"%,d".format(product.price)}",
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
