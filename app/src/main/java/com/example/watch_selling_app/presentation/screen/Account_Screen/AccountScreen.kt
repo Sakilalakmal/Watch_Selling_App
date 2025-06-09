@@ -156,8 +156,8 @@ fun AccountScreen(
 
                 // View Full Profile Button
                 AnimatedImageButton(
-                    imageResLight = content.viewProfileButtonDark,
-                    imageResDark = content.viewProfileButtonLight,
+                    imageResLight = content.viewProfileButtonLight,
+                    imageResDark = content.viewProfileButtonDark,
                     contentDescription = getSafeString(
                         name = context.resources.getResourceEntryName(content.viewProfileButtonDescId)
                     ),
