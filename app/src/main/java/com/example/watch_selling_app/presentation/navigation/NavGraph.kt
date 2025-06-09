@@ -145,7 +145,7 @@ fun AppNavGraph(navController: NavHostController) {
                     navController.popBackStack()
                 },
                 onLogoutClick = {  navController.navigate("login") {
-                    popUpTo("home") { inclusive = true } 
+                    popUpTo("home") { inclusive = true }
                     launchSingleTop = true
                 }}
             )
