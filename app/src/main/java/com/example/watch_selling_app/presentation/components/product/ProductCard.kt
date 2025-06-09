@@ -57,7 +57,7 @@ fun ProductCard(
             .clickable(onClick = onClick),
         shape = RoundedCornerShape(Dimens.RadiusMedium),
         colors = CardDefaults.cardColors(
-            containerColor = LocalCustomColors.current.premiumGrey
+            containerColor = MaterialTheme.colorScheme.background
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = Dimens.ElevationMedium)
     ) {
@@ -104,7 +104,7 @@ fun ProductCard(
                     text = "$${"%,.2f".format(product.price.toFloat())}",
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.error,
+                    color = LocalCustomColors.current.luxuryGold,
                     modifier = Modifier
                         .padding(top = Dimens.SpacingXS)
                 )
