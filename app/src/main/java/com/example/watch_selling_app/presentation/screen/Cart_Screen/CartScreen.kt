@@ -85,7 +85,7 @@ fun CartScreen(
         ) {
             Text(
                 text = "Total: $${"%,.2f".format(totalPrice.toFloat())}",
-                style = MaterialTheme.typography.titleMedium,
+                style = MaterialTheme.typography.headlineMedium,
                 color = MaterialTheme.colorScheme.primary
             )
 
