@@ -164,8 +164,8 @@ fun LoginScreenContent(
 
         // Login button
         AnimatedImageButton(
-            imageResLight = content.loginButtonDarkResId,
-            imageResDark = content.loginButtonLightResId,
+            imageResLight = content.loginButtonLightResId,
+            imageResDark = content.loginButtonDarkResId,
             contentDescription = content.loginButtonDescriptionKey,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally),
