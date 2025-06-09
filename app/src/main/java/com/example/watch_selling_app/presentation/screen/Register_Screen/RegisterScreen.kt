@@ -179,8 +179,8 @@ fun RegisterScreenContent(
 
         // explore button
         AnimatedImageButton(
-            imageResLight = content.exploreButtonDarkResId,
-            imageResDark = content.exploreButtonLightResId,
+            imageResLight = content.exploreButtonLightResId,
+            imageResDark = content.exploreButtonDarkResId,
             contentDescription = content.exploreButtonDescriptionKey,
             onClick = {onExploreClick()}
         )
