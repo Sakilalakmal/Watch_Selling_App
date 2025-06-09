@@ -1,6 +1,7 @@
 package com.example.watch_selling_app.presentation.components.product
 
 
+import android.R
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -27,14 +28,14 @@ fun QuantitySelector(
             enabled = config.isEnabled && quantity > config.minQuantity,
             contentPadding = PaddingValues(horizontal = Dimens.SpacingXS)
         ) {
-            Text(text = "-")
+            Text(text = "-", style = MaterialTheme.typography.titleLarge)
         }
 
         Spacer(modifier = Modifier.width(Dimens.SpacingM))
 
         Text(
             text = quantity.toString(),
-            style = MaterialTheme.typography.bodyLarge
+            style = MaterialTheme.typography.titleMedium
         )
 
         Spacer(modifier = Modifier.width(Dimens.SpacingM))
@@ -44,7 +45,7 @@ fun QuantitySelector(
             enabled = config.isEnabled && quantity < config.maxQuantity,
             contentPadding = PaddingValues(horizontal = Dimens.SpacingXS)
         ) {
-            Text(text = "+")
+            Text(text = "+" , style = MaterialTheme.typography.titleLarge)
         }
     }
 }
