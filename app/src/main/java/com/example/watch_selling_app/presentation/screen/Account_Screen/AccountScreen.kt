@@ -8,6 +8,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.DarkMode
+import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -34,10 +36,10 @@ fun AccountScreen(
     selectedItem: BottomNavItem,
     onItemSelected: (BottomNavItem) -> Unit,
     onBackClick: () -> Unit,
-    onLogoutClick: () -> Unit
+    onLogoutClick: () -> Unit,
+    onToggleTheme: () -> Unit
 ) {
     val isDark = isSystemInDarkTheme()
-
     val context = LocalContext.current
     val content = AccountScreenContentDataSource.getAccountScreenContent()
     val generalItems = AccountSectionEntryDataSource.generalItems
@@ -45,7 +47,6 @@ fun AccountScreen(
 
     val backgroundRes = if (isDark) content.backgroundResDarkModeId else content.backgroundResLightModeId
     val backgroundDesc = if (isDark) content.backgroundDesc else content.backgroundDesc
-    val viewProfileImage = if (isDark) content.viewProfileButtonDark else content.viewProfileButtonLight
 
     Scaffold(
         bottomBar = {
@@ -62,7 +63,6 @@ fun AccountScreen(
                 .fillMaxSize()
                 .padding(padding)
         ) {
-            // Background
             Image(
                 painter = painterResource(id = backgroundRes),
                 contentDescription = getSafeString(
@@ -81,14 +81,15 @@ fun AccountScreen(
                     .padding(Dimens.SpacingM),
                 verticalArrangement = Arrangement.spacedBy(Dimens.SpacingM)
             ) {
-                // Back Button and Title Row
+
+                // 🔙 Top Bar
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = Dimens.SpacingL)
                 ) {
                     BackIconButton(
-                        descriptionKey = "account_screen_title", // or any key you want
+                        descriptionKey = "account_screen_title",
                         onClick = onBackClick,
                         modifier = Modifier
                             .padding(bottom = Dimens.SpacingL)
@@ -105,37 +106,63 @@ fun AccountScreen(
                     )
                 }
 
-                // Profile section
+                // 👤 Profile Row + Toggle Theme
                 Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(Dimens.SpacingM),
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = Dimens.SpacingS),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Image(
-                        painter = painterResource(id = content.profilePictureResId),
-                        contentDescription = getSafeString(
-                            name = context.resources.getResourceEntryName(content.profilePictureDescId)
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(Dimens.SpacingM),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Image(
+                            painter = painterResource(id = content.profilePictureResId),
+                            contentDescription = getSafeString(
+                                name = context.resources.getResourceEntryName(content.profilePictureDescId)
+                            ),
+                            modifier = Modifier
+                                .size(Dimens.profile_image_size)
+                                .clip(CircleShape),
+                            contentScale = ContentScale.Crop
+                        )
+                        Column {
+                            Text(
+                                text = getSafeString(
+                                    name = context.resources.getResourceEntryName(content.userNameResId)
+                                ),
+                                style = MaterialTheme.typography.titleLarge,
+                                color = MaterialTheme.colorScheme.onBackground
+                            )
+                            Text(
+                                text = getSafeString(
+                                    name = context.resources.getResourceEntryName(content.userLocationResId)
+                                ),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                    }
+
+                    // 🌗 Toggle Theme Button
+                    Button(
+                        onClick = onToggleTheme,
+                        shape = RoundedCornerShape(20.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                            contentColor = MaterialTheme.colorScheme.onSurface
                         ),
-                        modifier = Modifier
-                            .size(Dimens.profile_image_size)
-                            .clip(CircleShape),
-                        contentScale = ContentScale.Crop
-                    )
-                    Column {
-                        Text(
-                            text = getSafeString(
-                                name = context.resources.getResourceEntryName(content.userNameResId)
-                            ),
-                            style = MaterialTheme.typography.titleLarge,
-                            color = MaterialTheme.colorScheme.onBackground
+                        modifier = Modifier.height(40.dp)
+                    ) {
+                        Icon(
+                            imageVector = if (isDark) Icons.Filled.LightMode else Icons.Filled.DarkMode,
+                            contentDescription = "Toggle Theme",
+                            modifier = Modifier.size(20.dp)
                         )
-                        Text(
-                            text = getSafeString(
-                                name = context.resources.getResourceEntryName(content.userLocationResId)
-                            ),
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(text = if (isDark) "Light" else "Dark")
                     }
                 }
 
@@ -150,11 +177,11 @@ fun AccountScreen(
                         .fillMaxWidth()
                         .height(Dimens.ButtonHeight),
                     onClick = {
-                        //navigate to profile
+                        // Navigate to profile
                     }
                 )
 
-                // General Section
+                // 🧩 General Section
                 Text(
                     text = getSafeString(
                         name = context.resources.getResourceEntryName(content.generalSectionTitleResId)
@@ -171,7 +198,7 @@ fun AccountScreen(
                     )
                 }
 
-                // Support Section
+                // 🛠 Support Section
                 Text(
                     text = getSafeString(
                         name = context.resources.getResourceEntryName(content.supportSectionTitleResId)
@@ -185,11 +212,8 @@ fun AccountScreen(
                     SectionCard(
                         item = item,
                         onClick = {
-                            val logoutTitleId = R.string.log_out
-                            if (item.titleResId == logoutTitleId) {
+                            if (item.titleResId == R.string.log_out) {
                                 onLogoutClick()
-                            } else {
-
                             }
                         }
                     )
@@ -198,3 +222,4 @@ fun AccountScreen(
         }
     }
 }
+
