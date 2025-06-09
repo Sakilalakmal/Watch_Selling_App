@@ -1,6 +1,11 @@
 // NavGraph.kt (Simple version)
 package com.example.watch_selling_app.presentation.navigation
 
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.*
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -18,17 +23,20 @@ import com.example.watch_selling_app.presentation.screen.watchStore_Screen.Watch
 import com.example.watch_selling_app.utils.ProductHolder
 import com.example.watch_selling_app.domain.model.RegisterFormData
 import com.example.watch_selling_app.data.dataSource.DataSource
+import com.google.accompanist.navigation.animation.AnimatedNavHost
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun AppNavGraph(navController: NavHostController,
                ) {
     val navItems = BottomNavDataSource.getBottomNavItems()
     var selectedItem by remember { mutableStateOf(navItems.first()) }
 
-    NavHost(
+    AnimatedNavHost(
         navController = navController,
-        startDestination = "splash"
-    ) {
+        startDestination = "splash",
+
+    )  {
         composable("splash") {
             SplashScreen(
                 onGetStartedClick = {
@@ -152,7 +160,10 @@ fun AppNavGraph(navController: NavHostController,
             )
         }
 
-        composable("product_detail") {
+        composable("product_detail",     enterTransition = { slideInHorizontally(initialOffsetX = { 900 }) + fadeIn() },
+            exitTransition = { slideOutHorizontally(targetOffsetX = { -900 }) + fadeOut() },
+            popEnterTransition = { slideInHorizontally(initialOffsetX = { -900 }) + fadeIn() },
+            popExitTransition = { slideOutHorizontally(targetOffsetX = { 900 }) + fadeOut() }) {
             ProductDetailScreen(
                 onBackClick = { navController.popBackStack() },
                 onCheckoutClick = {
