@@ -80,19 +80,6 @@ fun LoginScreenContent(
 
             )
 
-            // navigation back icon on top image
-
-            Icon(imageVector = (content.backButtonIcon),
-                contentDescription = content.backButtonIconDescriptionKey,
-                modifier = Modifier
-                    .padding(top = Dimens.SpacingXL, end = Dimens.SpacingS)
-                    .size(Dimens.iconButtonSize)
-                    .clickable { onBackClick }
-                    .align(Alignment.TopEnd),
-                tint = MaterialTheme.colorScheme.onPrimary
-
-            )
-
             // main title on login screen
             Text(text =  getSafeString(content.titleKey),
                 style = MaterialTheme.typography.displayMedium,
@@ -171,8 +158,8 @@ fun LoginScreenContent(
 
         // Login button
         AnimatedImageButton(
-            imageResLight = content.loginButtonDarkResId,
-            imageResDark = content.loginButtonLightResId,
+            imageResLight = content.loginButtonLightResId,
+            imageResDark = content.loginButtonDarkResId,
             contentDescription = content.loginButtonDescriptionKey,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally),
