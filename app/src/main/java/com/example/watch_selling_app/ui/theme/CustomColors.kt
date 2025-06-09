@@ -8,6 +8,7 @@ import androidx.compose.ui.graphics.Color
 data class CustomColors(
     val luxuryGold: Color,
     val premiumGrey : Color
+
 ) {
 
 }
