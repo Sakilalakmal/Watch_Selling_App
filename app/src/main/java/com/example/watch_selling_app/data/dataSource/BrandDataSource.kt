@@ -16,7 +16,7 @@ object BrandDataSource {
         BrandData(
             nameResId = R.string.brand_omega,
             logoDescriptionResId = R.string.brand_omega_description,
-            logoResId = R.drawable.omega,
+            logoResId = R.drawable.brand_omega,
             id = 2
         ),
         BrandData(
