@@ -82,13 +82,13 @@ fun LoginScreenContent(
 
             // main title on login screen
             Text(text =  getSafeString(content.titleKey),
-                style = MaterialTheme.typography.displayMedium,
+                style = MaterialTheme.typography.displayLarge,
                 color = MaterialTheme.colorScheme.onSecondary,
             )
 
             // sub title on login screen
             Text(text = getSafeString(content.subtitleKey),
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSecondary,
                 modifier = Modifier
                     .padding(top = Dimens.maximumM)
