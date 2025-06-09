@@ -77,10 +77,11 @@ fun CartScreen(
 
         Spacer(modifier = Modifier.height(Dimens.SpacingM))
 
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+        Column(
+            modifier = Modifier
+                .padding(bottom = Dimens.SpacingM)
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
                 text = "Total: $${"%,.2f".format(totalPrice.toFloat())}",
