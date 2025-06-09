@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.watch_selling_app.data.dataSource.*
 import com.example.watch_selling_app.domain.model.BottomNavItem
@@ -64,7 +65,7 @@ fun WatchStoreScreen(
                     .fillMaxWidth()
                     .padding(top = Dimens.SpacingM)
             ) {
-                BackIconButton(descriptionKey = screenContent.titleKey, onClick = onBackClick)
+                BackIconButton(descriptionKey = screenContent.titleKey, onClick = onBackClick, modifier = Modifier.padding(bottom = Dimens.SpacingL))
                 Spacer(modifier = Modifier.width(Dimens.SpacingM))
                 Text(
                     text = stringResource(id = com.example.watch_selling_app.R.string.watch_store_Title),
