@@ -178,7 +178,7 @@ fun LoginScreenContent(
             //create texts
             Text(text = getSafeString(content.registerPromptKey,
                 fallback = stringResource(id = R.string.do_not_have_account) ),
-                style = MaterialTheme.typography.labelMedium,
+                style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.onBackground
             )
 
@@ -186,7 +186,7 @@ fun LoginScreenContent(
 
             //register action key
             Text(text = getSafeString(content.registerActionTextKey),
-                style = MaterialTheme.typography.titleSmall,
+                style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier
                     .clickable{onRegisterClick()}
