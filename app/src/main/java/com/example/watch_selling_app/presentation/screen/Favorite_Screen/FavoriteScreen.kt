@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -32,62 +33,67 @@ fun FavoriteScreen(
     var refreshTrigger by remember { mutableStateOf(0) }
     val favoriteProducts = remember(refreshTrigger) { FavoritesManager.getFavorites() }
 
-    Column(modifier = Modifier
-        .fillMaxSize()) {
-
-        // Top bar with back icon and title
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(Dimens.SpacingM)
-        ) {
-            // Back icon aligned to start
-            BackIconButton(
-                modifier = Modifier.align(Alignment.CenterStart),
-                onClick = onBackClick,
-                descriptionKey = getSafeString("back_button_description"),
+    Scaffold(
+        bottomBar = {
+            BottomNavigationBar(
+                items = navItems,
+                selectedItem = selectedItem,
+                onItemSelected = onItemSelected,
+                modifier = Modifier.fillMaxWidth()
             )
-
-            // Title centered in box
-            Text(
-                text = getSafeString(R.string.favorite_title.toString()),
-                style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.align(Alignment.Center)
-            )
-        }
-
-
-        Spacer(modifier = Modifier.height(Dimens.SpacingS))
-
-        // Grid of favorite products
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(2),
+        },
+        contentWindowInsets = WindowInsets(0, 0, 0, 0) // disables default bottom inset
+    ) { paddingValues ->
+        Column(
             modifier = Modifier
-                .weight(1f)
-                .padding(horizontal = Dimens.SpacingM),
-            verticalArrangement = Arrangement.spacedBy(Dimens.SpacingM),
-            horizontalArrangement = Arrangement.spacedBy(Dimens.SpacingM)
+                .fillMaxSize()
+                .padding(paddingValues) // accounts for nav bar space
         ) {
-            items(favoriteProducts) { product ->
-                FavoriteProductCard(
-                    product = product,
-                    onRemoveFavorite = {
-                        FavoritesManager.removeFavorite(product)
-                        refreshTrigger++
-                    },
-                    modifier = Modifier.fillMaxWidth()
+            // Top bar with back icon and title
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(Dimens.SpacingM)
+            ) {
+                BackIconButton(
+                    modifier = Modifier
+                        .padding(bottom = Dimens.SpacingL)
+                        .align(Alignment.CenterStart),
+                    onClick = onBackClick,
+                    descriptionKey = getSafeString("back_button_description"),
+                )
+
+                Text(
+                    text = getSafeString(R.string.favorite_title.toString()),
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier.align(Alignment.Center)
                 )
             }
-        }
 
-        // Bottom navigation bar
-        BottomNavigationBar(
-            items = navItems,
-            selectedItem = selectedItem,
-            onItemSelected = onItemSelected,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = Dimens.SpacingS)
-        )
+            Spacer(modifier = Modifier.height(Dimens.SpacingS))
+
+            // Grid of favorite products
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2),
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(horizontal = Dimens.SpacingM),
+                verticalArrangement = Arrangement.spacedBy(Dimens.SpacingM),
+                horizontalArrangement = Arrangement.spacedBy(Dimens.SpacingM)
+            ) {
+                items(favoriteProducts) { product ->
+                    FavoriteProductCard(
+                        product = product,
+                        onRemoveFavorite = {
+                            FavoritesManager.removeFavorite(product)
+                            refreshTrigger++
+                        },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
+            }
+        }
     }
 }
+
+
