@@ -26,7 +26,7 @@ fun SplashScreen(
         imageResId = R.drawable.splash_screen, // Replace with your image
         titleKey = "splash_title",
         subtitleKey = "splash_subtitle",
-        buttonResId = R.drawable.main_botton,     // Replace with your image
+        buttonResId = R.drawable.explore_white,     // Replace with your image
         buttonDesKey = "get_started_button"
     )
 
