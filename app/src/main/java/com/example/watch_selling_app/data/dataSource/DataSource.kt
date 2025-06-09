@@ -84,8 +84,8 @@ object DataSource {
             backButtonIconDescriptionKey = "navigation_back_button",
             titleKey = "register_screen_title",
             subtitleKey = "register_screen_subtitle",
-            exploreButtonLightResId =R.drawable.explore_light_btn,
-            exploreButtonDarkResId = R.drawable.explore_dark_btn,
+            exploreButtonLightResId =R.drawable.explore_white,
+            exploreButtonDarkResId = R.drawable.explore_white,
             exploreButtonDescriptionKey = "explore_button_description",
             alreadyHaveAccountKey = "already_have_account",
             loginHereKey = "login_here_text"
