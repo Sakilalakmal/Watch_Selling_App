@@ -39,6 +39,7 @@ import com.example.watch_selling_app.presentation.components.FormField
 import com.example.watch_selling_app.presentation.components.RememberMeCheckbox
 import com.example.watch_selling_app.presentation.viewModel.LoginViewModel
 import com.example.watch_selling_app.ui.theme.Dimens
+import com.example.watch_selling_app.ui.theme.LocalCustomColors
 
 @Composable
 fun LoginScreenContent(
@@ -187,7 +188,7 @@ fun LoginScreenContent(
             //register action key
             Text(text = getSafeString(content.registerActionTextKey),
                 style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onBackground,
+                color = LocalCustomColors.current.luxuryGold,
                 modifier = Modifier
                     .clickable{onRegisterClick()}
             )
