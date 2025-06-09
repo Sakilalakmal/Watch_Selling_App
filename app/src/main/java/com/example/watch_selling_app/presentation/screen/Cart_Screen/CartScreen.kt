@@ -29,7 +29,7 @@ fun CartScreen(
     val cartItems = CartManager.cartItems
     val totalPrice = CartManager.getTotalPrice()
 
-    // ✅ Clean usage of data source
+
     val screenContent: AddToCartScreenContent = AddToCartScreenContentDataSource.getContent()
 
     val title = context.resources.getIdentifier(screenContent.titleKey, "string", context.packageName).let {
@@ -48,11 +48,11 @@ fun CartScreen(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()
         ) {
-            BackIconButton(descriptionKey = screenContent.titleKey, onClick = onBackClick)
+            BackIconButton(descriptionKey = screenContent.titleKey, onClick = onBackClick,modifier = Modifier.padding(bottom = Dimens.SpacingL))
             Spacer(modifier = Modifier.width(Dimens.SpacingM))
             Column {
                 Text(text = title, style = MaterialTheme.typography.titleLarge)
-                Text(text = subtitle, style = MaterialTheme.typography.bodySmall)
+
             }
         }
 
