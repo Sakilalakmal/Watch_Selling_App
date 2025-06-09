@@ -58,6 +58,8 @@ fun ProductDetailScreen(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             BackIconButton(
+                modifier = Modifier
+                    .padding(bottom = Dimens.SpacingM),
                 descriptionKey = stringResource(id = screenData.checkoutDescriptionResId),
                 onClick = onBackClick
             )
