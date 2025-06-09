@@ -66,7 +66,7 @@ fun CartItemCard(
                     maxLines = 1
                 )
                 Text(
-                    text = "Rs. ${cartItem.product.price * cartItem.quantity}",
+                    text = "$ ${cartItem.product.price * cartItem.quantity}",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.primary
                 )
