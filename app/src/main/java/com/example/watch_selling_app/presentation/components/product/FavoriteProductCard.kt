@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.watch_selling_app.domain.model.ProductData
@@ -26,54 +27,67 @@ fun FavoriteProductCard(
     onRemoveFavorite: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column(
+    Card(
+        shape = RoundedCornerShape(Dimens.RadiusMedium),
         modifier = modifier
-            .clip(RoundedCornerShape(Dimens.RadiusMedium))
-            .background(MaterialTheme.colorScheme.surfaceContainerLow)
-            .padding(Dimens.SpacingS)
+            .width(160.dp) //
+            .wrapContentHeight(),
+        elevation = CardDefaults.cardElevation(defaultElevation = Dimens.ElevationMedium),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainerLow
+        )
     ) {
-
-        // Image with delete icon overlay
-        Box(modifier = Modifier.fillMaxWidth()) {
-            Image(
-                painter = painterResource(id = product.imageResId),
-                contentDescription = product.modelNameResId.toString(),
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(Dimens.SpacingS)
+        ) {
+            // Watch Image with Delete Icon overlay
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(Dimens.productCardHeight)
-                    .clip(RoundedCornerShape(Dimens.RadiusSmall)),
-                contentScale = ContentScale.Crop
+                    .height(140.dp),
+                contentAlignment = Alignment.TopEnd
+            ) {
+                Image(
+                    painter = painterResource(id = product.imageResId),
+                    contentDescription = getSafeString(product.modelNameResId.toString()),
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .clip(RoundedCornerShape(Dimens.RadiusSmall))
+                )
+
+                IconButton(
+                    onClick = { onRemoveFavorite() },
+                    modifier = Modifier
+                        .padding(Dimens.SpacingXXS)
+                        .size(Dimens.SpacingL)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "Remove Favorite",
+                        tint = MaterialTheme.colorScheme.error
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(Dimens.SpacingXS))
+
+            Text(
+                text = getSafeString(product.modelNameResId.toString()),
+                style = MaterialTheme.typography.labelLarge,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
             )
 
-            IconButton(
-                onClick = {onRemoveFavorite()},
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
-                    .padding(Dimens.SpacingXXS)
-                    .size(Dimens.SpacingL)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Delete,
-                    contentDescription = "Remove Favorite",
-                    tint = MaterialTheme.colorScheme.error
-                )
-            }
+            Text(
+                text = "$ ${"%,d".format(product.price)}",
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.SemiBold,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
         }
-
-        Spacer(modifier = Modifier.height(Dimens.SpacingXS))
-
-        Text(
-            text = getSafeString(product.modelNameResId.toString()),
-            style = MaterialTheme.typography.labelMedium,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis
-        )
-
-        Text(
-            text = "Rs. ${product.price}",
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.primary
-        )
     }
-
 }
