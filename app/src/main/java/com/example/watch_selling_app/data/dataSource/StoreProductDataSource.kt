@@ -12,7 +12,7 @@ object StoreProductDataSource {
                 brandImageDesc = R.string.brand_gshock_description,
                 modelNameResId = R.string.gshock_50CP,
                 price = 2500,
-                imageResId = R.drawable.g_shock,
+                imageResId = R.drawable.g_shock_red,
                 isFavorite = false,
                 id = 1,
                 watchDesc = R.string.gshock_desc,
