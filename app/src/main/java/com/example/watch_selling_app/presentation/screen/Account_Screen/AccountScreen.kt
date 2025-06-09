@@ -17,6 +17,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.example.watch_selling_app.R
 import com.example.watch_selling_app.data.dataSource.AccountScreenContentDataSource
 import com.example.watch_selling_app.data.dataSource.AccountSectionEntryDataSource
 import com.example.watch_selling_app.domain.model.BottomNavItem
@@ -32,7 +33,8 @@ fun AccountScreen(
     navItems: List<BottomNavItem>,
     selectedItem: BottomNavItem,
     onItemSelected: (BottomNavItem) -> Unit,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onLogoutClick: () -> Unit
 ) {
     val isDark = isSystemInDarkTheme()
 
@@ -88,7 +90,9 @@ fun AccountScreen(
                     BackIconButton(
                         descriptionKey = "account_screen_title", // or any key you want
                         onClick = onBackClick,
-                        modifier = Modifier.align(Alignment.CenterStart)
+                        modifier = Modifier
+                            .padding(bottom = Dimens.SpacingL)
+                            .align(Alignment.CenterStart)
                     )
 
                     Text(
@@ -180,7 +184,14 @@ fun AccountScreen(
                 supportItems.forEach { item ->
                     SectionCard(
                         item = item,
-                        onClick = {}
+                        onClick = {
+                            val logoutTitleId = R.string.log_out
+                            if (item.titleResId == logoutTitleId) {
+                                onLogoutClick()
+                            } else {
+
+                            }
+                        }
                     )
                 }
             }
