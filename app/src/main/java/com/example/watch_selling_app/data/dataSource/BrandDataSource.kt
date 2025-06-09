@@ -52,7 +52,7 @@ object BrandDataSource {
         BrandData(
             nameResId = R.string.brand_gshock,
             logoDescriptionResId = R.string.brand_gshock_description,
-            logoResId = R.drawable.g_shock_red,
+            logoResId = R.drawable.g_shock,
             id = 8
         )
     )
