@@ -44,7 +44,7 @@ object Dimens {
     // Image Sizes
 
     val LogoSize = 240.dp
-    val TopImageSize = 300.dp
+    val TopImageSize = 250.dp
     val illustrationHeight = 220.dp
     val illustrationWidth = 220.dp
     val ProductImageHeight = 200.dp
